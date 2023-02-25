@@ -4,7 +4,7 @@ import java.util.jar.Attributes.Name;
 
 public class LinkedListNode <T>{
 	public T data;
-	public Name next;
+	public T next;
 	//constructor
 	public void Node(T data)
 	{
