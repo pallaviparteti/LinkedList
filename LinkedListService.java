@@ -2,49 +2,55 @@ package com.linkedlist;
 
 public class LinkedListService<T extends Comparable<T>> {
 
-	Node<T> head;
+	LinkedListService<T> head;
+	private T data;
+	private T next;
+	public LinkedListService(T data2) {
+		// TODO Auto-generated constructor stub
+	}
 	//Method to add nodes at the front in the linked list
 	public void add(T data)
 	{
-		Node<T> newNode = new Node<T>(data);
+		LinkedListService<T> newNode = new LinkedListService<T>(data);
 		newNode.data = data;
-		newNode.next = head;
+		newNode.next = (T) head;
 		head = newNode;
 	}
 	//Method to append nodes at rear in the linked list
 	public void append(T data)
 	{
-		Node<T> newNode = new Node<T>(data);
+		LinkedListService<T> newNode = new LinkedListService<T>(data);
 		if(head == null)
 		{
 			head = newNode;
 		}
 		else
 		{
-			Node<T> tempNode = head;
+			Object tempNode = head;
 			while(tempNode.next != null)
 			{
 				tempNode = tempNode.next;
 			}
 			tempNode.next = newNode;
+
 		}
 	}
 	//Method to insert a node between two nodes
-	public void insertAfter(Node<T> prevNode, T data)
+	public void insertAfter(LinkedListService<T> prevNode, T data)
 	{
-		Node <T> newNode = new Node<T>(data);
+		LinkedListService <T> newNode = new LinkedListService<T>(data);
 		newNode.data = data;
 		newNode.next = prevNode.next;
-		prevNode.next = newNode;
+		prevNode.next = (T) newNode;
 	}
 	//Method to display linked list
 	public void display()
 	{
-		Node<T> tempNode = head;
+		LinkedListService<T> tempNode = head;
 		while(tempNode.next != null)
 		{
 			System.out.print(tempNode.data +" -> ");
-			tempNode= tempNode.next;
+			tempNode= (LinkedListService<T>) tempNode.next;
 		}
 		System.out.println(tempNode.data);
 	}
@@ -55,17 +61,17 @@ public class LinkedListService<T extends Comparable<T>> {
 		{
 			return null;
 		}
-		Node<T> tempNode = head;
+		LinkedListService<T> tempNode = head;
 		head = head.next;
 		return tempNode.data;
 	}
 	//Method to delete last element in the linked list
 	public T popLast()
 	{
-		Node<T> tempNode = head;
+		LinkedListService<T> tempNode = head;
 		while(tempNode.next.next!= null)
 		{
-			tempNode = tempNode.next;
+			tempNode = (LinkedListService<T>) tempNode.next;
 		}
 		tempNode.next = null;
 		return tempNode.data;
@@ -74,7 +80,7 @@ public class LinkedListService<T extends Comparable<T>> {
 	public void search (T key)
 	{
 		boolean keyFound = false;
-		Node<T> tempNode = head;
+		LinkedListService<T> tempNode = head;
 		while(tempNode != null)
 		{
 			if(tempNode.data == key)
@@ -83,7 +89,7 @@ public class LinkedListService<T extends Comparable<T>> {
 				keyFound = true;
 
 			}
-			tempNode = tempNode.next;
+			tempNode = (LinkedListService<T>) tempNode.next;
 		}
 		if(keyFound == false)
 		{
@@ -93,45 +99,45 @@ public class LinkedListService<T extends Comparable<T>> {
 	//Method to insert a node after given node with key value
 	public void insertAfterNode(T key,T data)
 	{
-		Node<T> newNode = new Node<T>(data);
+		LinkedListService<T> newNode = new LinkedListService<T>(data);
 		newNode.data = data;
-		Node<T> tempNode = head;
+		LinkedListService<T> tempNode = head;
 		while(tempNode.data != key)
 		{
-			tempNode = tempNode.next;
+			tempNode = (LinkedListService<T>) tempNode.next;
 		}
 		newNode.next = tempNode.next;
-		tempNode.next = newNode;
+		tempNode.next = (T) newNode;
 	}
 	//Method to delete a node from the linked list
 	public void deleteNode(T key)
 	{
-		Node<T> tempNode = head;
-		Node<T> prevNode = head;
+		LinkedListService<T> tempNode = head;
+		LinkedListService<T> prevNode = head;
 		while(tempNode.data != key)
 		{
 			prevNode = tempNode;
-			tempNode = tempNode.next;
+			tempNode = (LinkedListService<T>) tempNode.next;
 		}
 		prevNode.next = tempNode.next;
 	}
 	//Method to calculate size of linked list
 	public void size()
 	{
-		Node<T> tempNode = head;
+		LinkedListService<T> tempNode = head;
 		int count = 0;
 		while (tempNode != null)
 		{
 			count++;
-			tempNode = tempNode.next;
+			tempNode = (LinkedListService<T>) tempNode.next;
 		}
 		System.out.println("Size of the linked list is: "+count);
 	}
 	//Method to create ordered linked list
 	public void sortList()
 	{
-		Node<T> current= head;
-		Node<T> index = null;
+		LinkedListService<T> current= head;
+		LinkedListService<T> index = null;
 		T temp;
 		if (head == null)
 		{
@@ -141,7 +147,7 @@ public class LinkedListService<T extends Comparable<T>> {
 		{
 			while(current != null)
 			{
-				index = current.next;
+				index = (LinkedListService<T>) current.next;
 				while(index != null)
 				{
 					if((current.data).compareTo(index.data) > 0)
@@ -150,11 +156,15 @@ public class LinkedListService<T extends Comparable<T>> {
 						current.data = index.data;
 						index.data = temp;
 					}
-					index = index.next;
+					index = (LinkedListService<T>) index.next;
 				}
-				current = current.next;
+				current = (LinkedListService<T>) current.next;
 			}
 		}
+	}
+	public void delete() {
+		// TODO Auto-generated method stub
+
 	}
 }
 
